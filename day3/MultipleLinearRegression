@@ -1,0 +1,54 @@
+#   - MLR -
+# 1. Attempts to model the relationship between two or more features
+# 2. a response by fitting a linear equation to observed data
+#
+# Perform steps are similar to that of simple linear regression
+# The difference is the evaluation
+#                       Y = b + b1X1 + b2X2 + ..... + bnXn
+#              Y is dependent variable, Xn is independent variable
+
+# Assumption
+# A successful regression analysis should be validate all the following assumptions
+# 1. Linearity - relationship between dependent and independent variables should be linear
+# 2. Homoscedasticity - constant variance of the errors should be maintained
+# 3. Multivariate Normality - Multiple regression assumes that the residuals are normal distributed
+# 4. Lack of Multicollinearity - make sure the independent variables are independent from each other
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+ds = pd.read_csv('50_Startup.csv')
+X = ds.iloc[: , :-1].values
+Y = ds.iloc[:, 4 ].values
+
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder = LabelEncoder ()
+X[:,3] = labelencoder.fit_transform(X[ : , 3])
+onehotencoder = OneHotEncoder(categorical_features = [3])
+X = onehotencoder.fit_transform(X).toarray()
+
+X = X[: , 1:]
+# avoid dummy variable (labels)
+
+
+#split dataset from Training set and Test set
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 0)
+
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, Y_train)
+
+
+y_pred = regressor.predict(X_test)
+
+print(Y_test.lenth())
+print(y_pred.length())
+
+
+
+
