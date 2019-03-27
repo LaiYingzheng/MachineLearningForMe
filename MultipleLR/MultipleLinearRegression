@@ -45,9 +45,8 @@ regressor.fit(X_train, Y_train)
 
 
 y_pred = regressor.predict(X_test)
-
-print(Y_test.lenth())
-print(y_pred.length())
+result = pd.DataFrame({'Profit':y_pred.astype(np.int32)})
+result.to_csv('/Users/lait/PycharmProjects/Project-List/MachineLearning/MultipleLR/result.csv')
 
 
 

@@ -33,7 +33,6 @@ import operator
 from os import listdir
 
 def classify0(inX, dataSet, Labels, k):
-
     '''
         inX     -- testing vector
         dataSet -- training set, one row for one sample
