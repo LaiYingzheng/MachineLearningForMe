@@ -41,3 +41,48 @@
 '''
 from libsvm.svmutil import *
 
+'''
+    SVM in scikit:
+        SVC
+        NuSVC
+        LinearSVC: does not accept kernel
+        
+        input:
+        ------
+        X = [n_samples, n_features]  -> this holds the training samples
+        Y = [n_samples]              -> this holds the class label
+        
+        svm.properties:
+        ---------------
+        support_vectors_    //get support vector
+        support_            //indices of support vector
+        n_support_          //number of support vector
+        
+        df_shape:
+        --------
+        SVC & NuSVC:
+            one against one approach in multi class classification :ovo
+            svm.SVC().decision_function([1]).shape[1] = n_class * (nclass-1)/2
+        Linear SVC:
+            one against the rest: ovr
+                svm.LinearSVC().decision_function([1]).shape([1])
+                
+        unbalance_problems:
+        ---------------------
+            implement a keyword: class_weight => {class_label: value(float)}
+         
+        Kernel function:
+        -------------------
+            Linear:<X,X'>
+            Polynomial:< r <X,X'> + r >^d, d is degree, r is coef0
+            rbf: exp(-r||X-X'||^2), r is gamma, r > 0
+            sigmoid: tanh (r<X,X"> + R), R is coef0
+            customize kernel function:
+                >>> def my_kernel(X, Y):
+                ...     return np.dot(X, Y.T)
+                ...
+                >>> clf = svm.SVC(kernel=my_kernel)
+        
+                     
+
+'''
