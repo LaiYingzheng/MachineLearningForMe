@@ -30,7 +30,7 @@ RBF = 2
 
 # Other
 USE_LINEAR = False
-IS_TUNING = False
+IS_TUNING = True
 
 def main():
     try:
@@ -144,7 +144,7 @@ def buildImageList(dirName):
 
 def buildTrainTestVectors(imgs, generateTuningData):
     # 70% for training, 30% for test.
-    testSplit = int(.85 * len(imgs))
+    testSplit = int(.8 * len(imgs))
     baseTraining = imgs[:testSplit]
     test = imgs[testSplit:]
 
